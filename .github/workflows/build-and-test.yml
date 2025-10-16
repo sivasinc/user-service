@@ -58,7 +58,7 @@ jobs:
           retention-days: 30
       
       - name: 🔒 Trivy Filesystem Scan
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -315,3 +315,4 @@ jobs:
             echo "❌ BUILD FAILED!"
             exit 1
           fi
+
