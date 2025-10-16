@@ -1,55 +1,57 @@
-HELP.md
+# Compiled class files
+*.class
+*.jar
+*.war
+*.ear
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# IDE
+.idea/
 *.iml
+*.iws
 *.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
 .vscode/
+.settings/
+.classpath
+.project
+.factorypath
+
+# Logs
+*.log
+spring-boot-*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.pem
+*.key
+secrets/
+.env
+application-local.yml
+
+# Test results
+*.coverage
+.pytest_cache/
+coverage/
+
+# JaCoCo
+target/jacoco.exec
+target/site/jacoco/
+
+# SonarQube
+.sonar/
+.scannerwork/
+
+# Build artifacts
+*.zip
+*.tar.gz
 
 # GitHub Actions
 .github/workflows/*.log
-
-# Test results
-target/surefire-reports/
-target/failsafe-reports/
-target/site/
-
-# Coverage reports
-target/jacoco.exec
-
-# GitHub Actions
-.github/workflows/*.log
-
-# Test results
-target/surefire-reports/
-target/failsafe-reports/
-target/site/
-
-# Coverage reports
-target/jacoco.exec
