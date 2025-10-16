@@ -10,7 +10,7 @@ on:
 
 # Environment variables used across all jobs
 env:
-  JAVA_VERSION: "21"
+  JAVA_VERSION: '21'
   MAVEN_OPTS: '-Xmx1024m'
 
 jobs:
@@ -58,7 +58,7 @@ jobs:
           retention-days: 30
       
       - name: 🔒 Trivy Filesystem Scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           scan-ref: '.'
