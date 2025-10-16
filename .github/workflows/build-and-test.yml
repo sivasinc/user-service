@@ -7,6 +7,10 @@ on:
     branches: [ main, develop ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  security-events: write
+
 env:
   JAVA_VERSION: '21'
   MAVEN_OPTS: '-Xmx1024m'
