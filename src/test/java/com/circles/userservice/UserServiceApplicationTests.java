@@ -14,5 +14,6 @@ class UserServiceApplicationTests {
 	@Test
 	void contextLoads() {
 		// Test that application context loads successfully with H2
+
 	}
 }

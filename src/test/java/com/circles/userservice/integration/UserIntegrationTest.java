@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;           // ← ADD THIS LINE
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
+@ActiveProfiles("test")                                           // ← ADD THIS LINE
 class UserIntegrationTest {
 
     @Container
@@ -70,7 +72,6 @@ class UserIntegrationTest {
 
     @Test
     void getAllUsers_ShouldReturnUserList() {
-        // Create test user
         CreateUserRequest request = CreateUserRequest.builder()
                 .username("jane.doe")
                 .email("jane@example.com")
@@ -81,7 +82,6 @@ class UserIntegrationTest {
 
         restTemplate.postForEntity("/api/users", request, UserDTO.class);
 
-        // Get all users
         ResponseEntity<UserDTO[]> response = restTemplate.getForEntity(
                 "/api/users",
                 UserDTO[].class
@@ -94,7 +94,6 @@ class UserIntegrationTest {
 
     @Test
     void getUserById_ShouldReturnUser_WhenExists() {
-        // Create user
         CreateUserRequest request = CreateUserRequest.builder()
                 .username("test.user")
                 .email("test@example.com")
@@ -111,7 +110,6 @@ class UserIntegrationTest {
 
         Long userId = createResponse.getBody().getId();
 
-        // Get user by ID
         ResponseEntity<UserDTO> response = restTemplate.getForEntity(
                 "/api/users/" + userId,
                 UserDTO.class
@@ -124,7 +122,6 @@ class UserIntegrationTest {
 
     @Test
     void deleteUser_ShouldRemoveUser() {
-        // Create user
         CreateUserRequest request = CreateUserRequest.builder()
                 .username("delete.user")
                 .email("delete@example.com")
@@ -141,10 +138,8 @@ class UserIntegrationTest {
 
         Long userId = createResponse.getBody().getId();
 
-        // Delete user
         restTemplate.delete("/api/users/" + userId);
 
-        // Verify deleted
         ResponseEntity<UserDTO> getResponse = restTemplate.getForEntity(
                 "/api/users/" + userId,
                 UserDTO.class

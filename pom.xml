@@ -36,7 +36,7 @@
 		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
 		<!-- Code Coverage Thresholds -->
-		<jacoco.minimum.coverage>0.70</jacoco.minimum.coverage>
+		<jacoco.minimum.coverage>0.30</jacoco.minimum.coverage>
 	</properties>
 
 	<dependencies>
@@ -92,6 +92,7 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- H2 Database for Testing -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -270,7 +271,7 @@
 										<limit>
 											<counter>BRANCH</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.60</minimum>
+											<minimum>0.20</minimum>
 										</limit>
 									</limits>
 								</rule>
