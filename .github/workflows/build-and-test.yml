@@ -14,6 +14,7 @@ permissions:
   actions: read
   checks: write
   pull-requests: write
+  statuses: write
 
 env:
   JAVA_VERSION: '21'
@@ -98,11 +99,19 @@ jobs:
           cache: 'maven'
       
       - name: 🔨 Build and Run Unit Tests
-        run: mvn clean test -B
+        run: mvn clean test -B -Dspring.profiles.active=test
+      
+      - name: ✅ Verify Test Success
+        if: success()
+        run: |
+          echo "================================"
+          echo "✅ All unit tests passed successfully!"
+          echo "================================"
       
       - name: 📊 Generate Test Report
         if: always()
         uses: dorny/test-reporter@v1
+        continue-on-error: true
         with:
           name: Unit Test Results
           path: target/surefire-reports/*.xml
@@ -175,6 +184,7 @@ jobs:
       - name: 📊 Generate Integration Test Report
         if: always()
         uses: dorny/test-reporter@v1
+        continue-on-error: true
         with:
           name: Integration Test Results
           path: target/failsafe-reports/*.xml
@@ -320,3 +330,4 @@ jobs:
             echo "❌ BUILD FAILED!"
             exit 1
           fi
+
